@@ -3,8 +3,12 @@
 //Change paragraph color on hover (red)
 const paragraphs = document.querySelectorAll('p');
 paragraphs.forEach((paragraph) => {
-   paragraph.addEventListener('mouseover', (event) => {
+   paragraph.addEventListener('mouseenter', (event) => {
       event.target.style.color = 'red';
+   });
+
+   paragraph.addEventListener('mouseout', (event) => {
+      event.target.style.color = 'green';
    });
 });
 
@@ -19,8 +23,8 @@ function getRandomColor() {
 }
 
 const body = document.querySelector('body');
-body.addEventListener('keydown', (event) => {
-   event.target.style.background = getRandomColor();
+body.addEventListener('keydown', () => {
+   body.style.background = getRandomColor();
 });
 
 //Increase font size if scrolled on
@@ -48,4 +52,7 @@ images.forEach((image) => {
    image.addEventListener('dragend', (event) => {
       event.target.style.height = originalHeight;
    });
+
+   image.addEventListener('load', () => console.log('image loaded'));
 });
+
