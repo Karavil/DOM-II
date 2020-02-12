@@ -27,6 +27,14 @@ body.addEventListener('keydown', () => {
    body.style.background = getRandomColor();
 });
 
+body.addEventListener('dblclick', () =>{
+   anime({
+      targets: 'body',
+      rotate: '1turn',
+      duration: 1000
+    });
+});
+
 //Increase font size if scrolled on
 paragraphs.forEach((paragraph) => {
    paragraph.addEventListener('wheel', (event) => {
@@ -45,8 +53,13 @@ images.forEach((image) => {
 
 
    image.addEventListener('drag', (event) => {
-      newHeight *= 1.005;
-      event.target.style.height =  newHeight + 'px';
+      anime({
+         targets: image,
+         height: '200%',
+         easing: 'easeInOutQuad',
+         direction: 'alternate',
+         loop: true
+      })
    });
 
    image.addEventListener('dragend', (event) => {
@@ -54,5 +67,23 @@ images.forEach((image) => {
    });
 
    image.addEventListener('load', () => console.log('image loaded'));
+
+   image.addEventListener('dblclick', (event) => {
+      event.target.style.transform = 'rotate(180deg)';
+   });
 });
+
+document.addEventListener("visibilitychange", function() {
+   if (document.visibilityState === 'visible') {
+     alert('Window visible');
+   }
+ });
+
+ anime({
+   targets: 'body',
+   rotate: '3turn',
+   duration: 4000
+ });
+
+
 
